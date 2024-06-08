@@ -42,6 +42,10 @@
 	
 		<h1>Rock, Paper and Scissors</h1><br><br>
 		
+		 <button id="rock">Rock</button>
+		<button id="paper">Paper</button>
+		<button id="scissors">Scissors</button>
+		
 		<h2 id="ans1"></h2>
 		
 		<p id="ans2"></p>
@@ -71,11 +75,11 @@
 				return cValue;
 			}
 			
-			function humChoice()
+			/*function humChoice()
 			{
 				hValue = prompt("Enter you Weapon (Rock/Paper/Scissors)");
 				return hValue;
-			}
+			}*/
 			
 			function ansSelect(hSelect, cSelect)
 			{
@@ -83,11 +87,11 @@
 			{
 				document.getElementById("ans1").innerHTML = "It's a Tie";
 			}
-			else if((cSelect=="Rock" && hSelect=="Scissors")||(cSelect=="Paper" && hSelect=="Rock"))
+			else if((cSelect=="Rock" && hSelect=="Scissors")||(cSelect=="Paper" && hSelect=="Rock")||(cSelect=="Scissors" && hSelect=="Paper"))
 			{
 				document.getElementById("ans1").innerHTML = "Computer Wins";
 			}
-			else if((hSelect=="Rock" && cSelect=="Scissors")||(hSelect=="Paper" && cSelect=="Rock"))
+			else if((hSelect=="Rock" && cSelect=="Scissors")||(hSelect=="Paper" && cSelect=="Rock")||(hSelect=="Scissors" && cSelect=="Paper"))
 			{
 				document.getElementById("ans1").innerHTML = "Human Wins";
 			}
@@ -98,15 +102,34 @@
 			
 			}
 			
-			hAns = humChoice();
-			cAns = compChoice();
-			console.log(cAns);
-			console.log(hAns);
 			
-			ansSelect(hAns, cAns);
+			function playRound(hSelection)
+			{		
+					hAns = hSelection;
+					cAns = compChoice();
+					console.log(cAns);
+					console.log(hAns);
+					
+					ansSelect(hAns, cAns);
+					
+					document.getElementById("ans2").innerHTML = "Computer's Choice: "+ cAns;
+					document.getElementById("ans3").innerHTML = "Human's Choice: "+ hAns;
+			}
 			
-			document.getElementById("ans2").innerHTML = "Computer's Choice: "+ cAns;
-			document.getElementById("ans3").innerHTML = "Human's Choice: "+ hAns;
+			document.getElementById("rock").addEventListener("click", function() 
+			{
+				playRound("Rock");
+			});
+			
+			document.getElementById("paper").addEventListener("click", function() 
+			{
+				playRound("Paper");
+			});
+			
+			document.getElementById("scissors").addEventListener("click", function() 
+			{
+				playRound("Scissors");
+			});
 		
 		</script>
 	
